@@ -1,0 +1,7 @@
+zhipuai
+httpx
+sniffio
+pandas
+openpyxl
+requests
+lark-oapi
