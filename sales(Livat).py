@@ -113,7 +113,7 @@ def recognize_order(image_data, prompt_text, retries=2):
 
 client = ZhipuAI(api_key=st.secrets["ZHIPU_API_KEY"])
 
-st.title("📋 销售录入助手")
+st.title("📋 销售录入助手(荟聚)")
 
 uploaded_file = st.file_uploader("上传订单截图", type=["jpg", "jpeg", "png"])
 if st.button("订单截图预览"):
