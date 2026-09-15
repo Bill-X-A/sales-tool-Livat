@@ -222,8 +222,8 @@ if st.button("确认提交", disabled=submit_disabled):
                 "时间": datetime.now(timezone(timedelta(hours=8))).strftime("%Y-%m-%d %H:%M:%S")
             }
 
-        if attachments:
-                data["三码合一照片"] = attachments
+            if attachments:
+                    data["三码合一照片"] = attachments
             success = save_to_feishu(data)
 
     st.session_state.submitting = False
