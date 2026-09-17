@@ -31,6 +31,21 @@ if st.button("诊断：读取新表字段"):
     else:
         st.error(f"连接失败：{resp.code} {resp.msg}")
 
+from lark_oapi.api.bitable.v1 import CreateAppTableRecordRequest, AppTableRecord
+
+if st.button("诊断：写入一条空记录"):
+    client = lark.Client.builder().app_id(APP_ID).app_secret(APP_SECRET).build()
+    req = (CreateAppTableRecordRequest.builder()
+           .app_token(APP_TOKEN).table_id(TABLE_ID)
+           .request_body(AppTableRecord.builder().fields({}).build())
+           .build())
+    resp = client.bitable.v1.app_table_record.create(req)
+    if resp.success():
+        st.success("写入正常，新表里多了一行空记录（测完删掉即可）")
+    else:
+        st.error(f"写入失败：{resp.code} {resp.msg}")
+
+
 def save_to_feishu(data):
     client = lark.Client.builder() \
         .app_id(APP_ID) \
