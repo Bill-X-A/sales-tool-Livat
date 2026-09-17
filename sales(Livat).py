@@ -235,7 +235,8 @@ if st.button("确认提交", disabled=submit_disabled):
     elif not upload_ok:
         st.error(f"照片「{failed_name}」上传失败，本次未提交，请重试")
     else:
-        st.error("提交失败，请重试")
+        except Exception as e:
+            st.exception(e)   # 把原来的 st.error("提交失败") 换成这行
 
 
 if st.button("查看历史记录"):
