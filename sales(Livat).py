@@ -18,9 +18,10 @@ APP_TOKEN = "Lg6vbkcIGavxuvs80zMcA3b16Og"
 TABLE_ID = "tblqtY9EQWcCfaCj"
 
 def save_to_feishu(data):
-    client = lark.Client.builder().app_id(APP_ID).app_secret(APP_SECRET) \
-    .log_level(lark.LogLevel.DEBUG).build()
-
+    client = lark.Client.builder() \
+        .app_id(APP_ID) \
+        .app_secret(APP_SECRET) \
+        .build()
 
     request = CreateAppTableRecordRequest.builder() \
         .app_token(APP_TOKEN) \
