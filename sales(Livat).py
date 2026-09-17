@@ -14,8 +14,8 @@ from lark_oapi.api.drive.v1 import *
 import requests
 APP_ID = st.secrets["FEISHU_APP_ID"]
 APP_SECRET = st.secrets["FEISHU_APP_SECRET"]
-APP_TOKEN = "AO2NbKrqNaWFZ9suHKJcjGYLn4b"
-TABLE_ID = "tbl1W59w24xZBvNc"
+APP_TOKEN = "Lg6vbkcIGavxuvs80zMcA3b16Og"
+TABLE_ID = "tblqtY9EQWcCfaCj"
 
 def save_to_feishu(data):
     client = lark.Client.builder() \
