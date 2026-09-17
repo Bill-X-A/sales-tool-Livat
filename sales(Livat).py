@@ -68,7 +68,10 @@ def get_from_feishu():
     
     if response.success():
         records = []
-        for item in response.data.items:
+       if not response.success():
+        st.error(f"读取失败：{response.code} {response.msg}")
+        return []
+    for item in (response.data.items or []):
             records.append(item.fields)
         return records
     else:
