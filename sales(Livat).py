@@ -17,6 +17,21 @@ APP_SECRET = st.secrets["FEISHU_APP_SECRET"]
 APP_TOKEN = "Lg6vbkcIGavxuvs80zMcA3b16Og"
 TABLE_ID = "tblqtY9EQWcCfaCj"
 
+import lark_oapi as lark
+from lark_oapi.api.bitable.v1 import ListAppTableFieldRequest
+
+if st.button("诊断：读取新表字段"):
+    client = lark.Client.builder().app_id(APP_ID).app_secret(APP_SECRET).build()
+    req = (ListAppTableFieldRequest.builder()
+           .app_token(APP_TOKEN).table_id(TABLE_ID).page_size(100).build())
+    resp = client.bitable.v1.app_table_field.list(req)
+    if resp.success():
+        st.success("连接正常，表里现有字段：")
+        st.write([f.field_name for f in resp.data.items])
+    else:
+        st.error(f"连接失败：{resp.code} {resp.msg}")
+
+
 def save_to_feishu(data):
     client = lark.Client.builder() \
         .app_id(APP_ID) \
