@@ -142,7 +142,7 @@ if st.button("识别"):
     {
         "订单时间": "",
         "销售员": "",
-        "备注后面的11位数字": "只提取【备注】这一行后面的11位数字，不要提取【手机号】字段的数字，如果备注里没有11位数字则返回13000000000",
+        "备注": "",
         "SN码": "提取所有商品的SN码（不含礼品），多个SN码之间用逗号隔开",
         "商品名称": "提取所有商品名称（不含礼品），多个用逗号隔开",
         "商品名称": "",
@@ -165,10 +165,8 @@ if st.button("识别"):
     if result:
         st.session_state.订单时间 = result.get("订单时间", "")
         st.session_state.销售员 = result.get("销售员", "")
-        phone = result.get("备注后面的11位数字", "")
-        if not (phone.isdigit() and len(phone) == 11):
-            phone = "13000000000"
-        st.session_state.手机号 = phone
+        
+        st.session_state.备注 = result.get("备注", "")
         st.session_state.商品名称 = result.get("商品名称", "")
         st.session_state.SN码 = result.get("SN码", "")
         st.session_state.订单金额 = result.get("订单金额", "")
@@ -180,7 +178,7 @@ if st.button("识别"):
 if st.session_state.get("show_fields"):
     st.session_state.订单时间 = st.text_input("订单时间", st.session_state.订单时间)
     st.session_state.销售员 = st.text_input("销售员", st.session_state.销售员)
-    st.session_state.手机号 = st.text_input("手机号", st.session_state.手机号)
+    st.session_state.备注 = st.text_input("备注", st.session_state.备注)
     st.session_state.商品名称 = st.text_input("商品名称", st.session_state.商品名称)
     st.session_state.SN码 = st.text_input("SN码", st.session_state.SN码)
     st.session_state.订单金额 = st.text_input("订单金额", st.session_state.订单金额)
@@ -215,7 +213,7 @@ if st.button("确认提交", disabled=submit_disabled):
                 "标题": "销售记录",
                 "订单时间": st.session_state.订单时间,
                 "销售员": st.session_state.销售员,
-                "手机号": st.session_state.手机号,
+                "备注": st.session_state.备注,
                 "商品名称": st.session_state.商品名称,
                 "SN码": st.session_state.SN码,
                 "订单金额": st.session_state.订单金额,
